@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define fo(i,n) for(ll i=0;i<n;i++)
+#define fo1(i,n) for(ll i=1;i<=n;i++)
+ll N=100001;
+ll mod=1000000007;
+
+ll t,n,x,k,m;
+string s;
+int flag=0;
+
+
+
+int main(){
+
+	#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
+ 	
+ 	cin>>t;
+ 	while(t--){
+ 		cin>>n>>k;
+ 		int a[n];
+ 		fo(i,n)cin>>a[i];
+ 		int dp[k+1],first[k+1];
+ 		dp[0]=0;
+ 		fo1(i,k){
+ 			dp[i]=INT_MAX;
+ 			fo(c,n){
+ 				if(i-a[c]>=0 && dp[i]>1+dp[i-a[c]]){
+ 					dp[i]=1+dp[i-a[c]];
+ 					first[i]=a[c];
+ 				}
+ 			}
+ 		}
+ 		while(k>0){
+ 			cout<<first[k]<<" ";
+ 			k-=first[k];
+ 		}
+ 	}
+
+
+    cerr << "Time : " << 1000 * ((double)clock()) / (double)CLOCKS_PER_SEC << "ms\n";
+    return 0;
+}
